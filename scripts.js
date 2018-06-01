@@ -1,11 +1,12 @@
 const current = document.querySelector('#current');
+const imgsContainer = document.querySelector('.imgs');
 const imgs = document.querySelectorAll('.imgs img');
 const opacity = 0.4;
 
 // Set first img opacity
 imgs[0].style.opacity = opacity;
 
-imgs.forEach(img => img.addEventListener('click', imgClick));
+// imgs.forEach(img => img.addEventListener('click', imgClick));
 
 function imgClick(e) {
   // Reset imgs opacity before style applied
@@ -26,3 +27,12 @@ function imgClick(e) {
   e.target.style.opacity = opacity;
 
 }
+
+
+// refactor to use event delegation
+
+imgsContainer.addEventListener('click', e => {
+  if (e.target.tagName === 'IMG') {
+    imgClick(e);
+  }
+});
